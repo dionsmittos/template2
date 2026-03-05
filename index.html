@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PristinePro — Commercial Cleaning Services</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --green: #0B7A5A;
+      --green-light: #2DD4A0;
+      --green-pale: #D1FAE5;
+      --blue: #1A4B6D;
+      --blue-dark: #0F2D44;
+      --blue-light: #3B82A0;
+      --white: #FFFFFF;
+      --off-white: #F6FAF8;
+      --gray-50: #F0F4F2;
+      --gray-100: #E2E8E4;
+      --gray-200: #C5CFC9;
+      --gray-500: #6B7C74;
+      --gray-700: #374840;
+      --dark: #0F1F1A;
+      --radius: 12px;
+      --shadow-sm: 0 1px 3px rgba(15,31,26,0.06);
+      --shadow-md: 0 4px 16px rgba(15,31,26,0.08);
+      --shadow-lg: 0 12px 40px rgba(15,31,26,0.12);
+      --shadow-xl: 0 20px 60px rgba(15,31,26,0.16);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      color: var(--dark);
+      background: var(--off-white);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      line-height: 1.15;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ========== NAV ========== */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 16px 0;
+      transition: background 0.35s ease, box-shadow 0.35s ease, padding 0.35s ease;
+    }
+
+    .nav.scrolled {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow-sm);
+      padding: 10px 0;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 22px;
+      color: var(--white);
+      transition: color 0.35s ease;
+    }
+
+    .nav.scrolled .nav-logo {
+      color: var(--dark);
+    }
+
+    .nav-logo-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--green-light);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--dark);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      color: rgba(255,255,255,0.85);
+      transition: color 0.2s ease;
+    }
+
+    .nav.scrolled .nav-links a {
+      color: var(--gray-700);
+    }
+
+    .nav-links a:hover {
+      color: var(--green-light);
+    }
+
+    .nav.scrolled .nav-links a:hover {
+      color: var(--green);
+    }
+
+    .nav-cta {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 10px 24px;
+      background: var(--green);
+      color: var(--white) !important;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(11,122,90,0.3);
+      color: var(--white) !important;
+      background: #099268;
+    }
+
+    .nav-cta:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--white);
+      cursor: pointer;
+    }
+
+    .nav.scrolled .mobile-toggle {
+      color: var(--dark);
+    }
+
+    /* ========== HERO ========== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(15,31,26,0.88) 0%,
+        rgba(26,75,109,0.75) 50%,
+        rgba(11,122,90,0.65) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 160px 0 120px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px 6px 8px;
+      background: rgba(45,212,160,0.15);
+      border: 1px solid rgba(45,212,160,0.3);
+      border-radius: 100px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--green-light);
+      margin-bottom: 32px;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .hero-badge .dot {
+      width: 8px;
+      height: 8px;
+      background: var(--green-light);
+      border-radius: 50%;
+      animation: pulse-dot 2s infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 800;
+      color: var(--white);
+      max-width: 780px;
+      margin-bottom: 24px;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .hero h1 span {
+      color: var(--green-light);
+    }
+
+    .hero-sub {
+      font-size: 19px;
+      color: rgba(255,255,255,0.75);
+      max-width: 540px;
+      margin-bottom: 48px;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      padding: 14px 32px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 8px 24px rgba(11,122,90,0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255,255,255,0.3);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--green-light);
+      color: var(--green-light);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      margin-top: 80px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .hero-stat h3 {
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--green-light);
+    }
+
+    .hero-stat p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      font-weight: 500;
+    }
+
+    /* ========== TRUSTED BAR ========== */
+    .trusted {
+      padding: 48px 0;
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .trusted p {
+      text-align: center;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--gray-500);
+      margin-bottom: 32px;
+    }
+
+    .trusted-logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 56px;
+      flex-wrap: wrap;
+    }
+
+    .trusted-logo {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      color: var(--gray-200);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ========== SERVICES ========== */
+    .services {
+      padding: 120px 0;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--green);
+      margin-bottom: 16px;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 24px;
+      height: 2px;
+      background: var(--green);
+      border-radius: 2px;
+    }
+
+    .section-heading {
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 16px;
+      max-width: 600px;
+    }
+
+    .section-sub {
+      font-size: 18px;
+      color: var(--gray-500);
+      max-width: 520px;
+      margin-bottom: 64px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 40px 32px;
+      border: 1px solid var(--gray-100);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--green-light);
+    }
+
+    .service-card:first-child {
+      grid-row: span 2;
+      background: var(--blue-dark);
+      border-color: transparent;
+    }
+
+    .service-card:first-child .service-icon {
+      background: rgba(45,212,160,0.15);
+      color: var(--green-light);
+    }
+
+    .service-card:first-child h3 {
+      color: var(--white);
+    }
+
+    .service-card:first-child p {
+      color: rgba(255,255,255,0.65);
+    }
+
+    .service-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      background: var(--green-pale);
+      color: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .service-card h3 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .service-card p {
+      font-size: 15px;
+      color: var(--gray-500);
+      line-height: 1.7;
+    }
+
+    .service-card .service-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-top: 24px;
+    }
+
+    /* ========== ABOUT / WHY US ========== */
+    .about {
+      padding: 120px 0;
+      background: var(--white);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-images {
+      position: relative;
+      height: 560px;
+    }
+
+    .about-img-main {
+      width: 85%;
+      height: 420px;
+      object-fit: cover;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .about-img-float {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 55%;
+      height: 240px;
+      object-fit: cover;
+      border-radius: var(--radius);
+      border: 6px solid var(--white);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .about-content .section-heading {
+      max-width: 100%;
+    }
+
+    .about-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .about-feature {
+      display: flex;
+      gap: 16px;
+    }
+
+    .about-feature-icon {
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--green-pale);
+      color: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .about-feature h4 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .about-feature p {
+      font-size: 14px;
+      color: var(--gray-500);
+    }
+
+    /* ========== GALLERY ========== */
+    .gallery {
+      padding: 120px 0;
+    }
+
+    .gallery-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .gallery-header .section-label {
+      justify-content: center;
+    }
+
+    .gallery-header .section-heading {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .gallery-header .section-sub {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 280px 280px;
+      gap: 16px;
+    }
+
+    .gallery-item {
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .gallery-item:nth-child(1) {
+      grid-column: span 2;
+    }
+
+    .gallery-item:nth-child(4) {
+      grid-column: span 2;
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(15,31,26,0.7) 0%, transparent 50%);
+      display: flex;
+      align-items: flex-end;
+      padding: 24px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .gallery-overlay span {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--white);
+    }
+
+    /* ========== TESTIMONIALS ========== */
+    .testimonials {
+      padding: 120px 0;
+      background: var(--blue-dark);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonials::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: rgba(45,212,160,0.05);
+    }
+
+    .testimonials .section-label {
+      color: var(--green-light);
+    }
+
+    .testimonials .section-label::before {
+      background: var(--green-light);
+    }
+
+    .testimonials .section-heading {
+      color: var(--white);
+    }
+
+    .testimonials .section-sub {
+      color: rgba(255,255,255,0.5);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .testimonial-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      padding: 36px;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .testimonial-stars {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 20px;
+      color: #FBBF24;
+    }
+
+    .testimonial-card blockquote {
+      font-size: 16px;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .testimonial-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green), var(--blue));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--white);
+    }
+
+    .testimonial-author h4 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .testimonial-author p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* ========== CTA ========== */
+    .cta {
+      padding: 120px 0;
+    }
+
+    .cta-box {
+      position: relative;
+      background: var(--green);
+      border-radius: 20px;
+      padding: 80px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .cta-box::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: -100px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .cta-box::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      right: -80px;
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.08);
+    }
+
+    .cta-box h2 {
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-box p {
+      font-size: 18px;
+      color: rgba(255,255,255,0.8);
+      max-width: 500px;
+      margin: 0 auto 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-box .btn {
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-white {
+      background: var(--white);
+      color: var(--green);
+      font-size: 16px;
+      padding: 16px 40px;
+    }
+
+    .btn-white:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    }
+
+    /* ========== FOOTER ========== */
+    .footer {
+      padding: 80px 0 40px;
+      background: var(--dark);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 64px;
+    }
+
+    .footer-brand .nav-logo {
+      margin-bottom: 16px;
+    }
+
+    .footer-brand p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.45);
+      max-width: 280px;
+      line-height: 1.7;
+    }
+
+    .footer h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 20px;
+    }
+
+    .footer ul {
+      list-style: none;
+    }
+
+    .footer ul li {
+      margin-bottom: 12px;
+    }
+
+    .footer ul a {
+      font-size: 15px;
+      color: rgba(255,255,255,0.45);
+      transition: color 0.2s ease;
+    }
+
+    .footer ul a:hover {
+      color: var(--green-light);
+    }
+
+    .footer-bottom {
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-bottom p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 16px;
+    }
+
+    .footer-socials a {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.4);
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .footer-socials a:hover {
+      background: var(--green);
+      color: var(--white);
+    }
+
+    /* ========== SCROLL ANIMATIONS ========== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* stagger children */
+    .stagger-children .reveal:nth-child(1) { transition-delay: 0ms; }
+    .stagger-children .reveal:nth-child(2) { transition-delay: 100ms; }
+    .stagger-children .reveal:nth-child(3) { transition-delay: 200ms; }
+    .stagger-children .reveal:nth-child(4) { transition-delay: 300ms; }
+    .stagger-children .reveal:nth-child(5) { transition-delay: 400ms; }
+    .stagger-children .reveal:nth-child(6) { transition-delay: 500ms; }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 1024px) {
+      .services-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .service-card:first-child {
+        grid-row: auto;
+      }
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+      .about-images {
+        height: 400px;
+      }
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+      }
+      .gallery-item:nth-child(1),
+      .gallery-item:nth-child(4) {
+        grid-column: auto;
+      }
+      .testimonials-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .mobile-toggle {
+        display: block;
+      }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        padding: 24px;
+        gap: 16px;
+        box-shadow: var(--shadow-lg);
+        border-radius: 0 0 var(--radius) var(--radius);
+      }
+      .nav-links.open a {
+        color: var(--dark) !important;
+        font-size: 16px;
+      }
+      .hero-stats {
+        flex-direction: column;
+        gap: 24px;
+      }
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+      .about-features {
+        grid-template-columns: 1fr;
+      }
+      .about-images {
+        height: 320px;
+      }
+      .about-img-main {
+        width: 100%;
+        height: 320px;
+      }
+      .about-img-float {
+        display: none;
+      }
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+      }
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+      .cta-box {
+        padding: 48px 24px;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="container nav-inner">
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-icon">
+          <i data-lucide="sparkles" style="width:20px;height:20px"></i>
+        </div>
+        PristinePro
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#gallery">Our Work</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+      </ul>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+        <i data-lucide="menu" style="width:24px;height:24px"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80" alt="Modern office building interior">
+    </div>
+    <div class="container hero-content">
+      <div class="hero-badge" id="heroBadge">
+        <span class="dot"></span>
+        Trusted by 200+ Facilities Nationwide
+      </div>
+      <h1 id="heroTitle">Spotless Spaces.<br><span>Lasting Impressions.</span></h1>
+      <p class="hero-sub" id="heroSub">Professional commercial cleaning for schools, offices, and large-scale facilities. We deliver consistent, high-standard results so you can focus on what matters.</p>
+      <div class="hero-actions" id="heroActions">
+        <a href="#contact" class="btn btn-primary">
+          Request Free Estimate
+          <i data-lucide="arrow-right" style="width:18px;height:18px"></i>
+        </a>
+        <a href="#services" class="btn btn-outline">
+          Explore Services
+        </a>
+      </div>
+      <div class="hero-stats" id="heroStats">
+        <div class="hero-stat">
+          <h3>15+</h3>
+          <p>Years Experience</p>
+        </div>
+        <div class="hero-stat">
+          <h3>200+</h3>
+          <p>Facilities Serviced</p>
+        </div>
+        <div class="hero-stat">
+          <h3>99%</h3>
+          <p>Client Retention</p>
+        </div>
+        <div class="hero-stat">
+          <h3>24/7</h3>
+          <p>Support Available</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUSTED -->
+  <section class="trusted">
+    <div class="container">
+      <p>Trusted by leading organizations</p>
+      <div class="trusted-logos">
+        <div class="trusted-logo"><i data-lucide="building-2" style="width:24px;height:24px"></i> EduCorp</div>
+        <div class="trusted-logo"><i data-lucide="landmark" style="width:24px;height:24px"></i> CityGov</div>
+        <div class="trusted-logo"><i data-lucide="hospital" style="width:24px;height:24px"></i> MedPlex</div>
+        <div class="trusted-logo"><i data-lucide="building" style="width:24px;height:24px"></i> TechHub</div>
+        <div class="trusted-logo"><i data-lucide="school" style="width:24px;height:24px"></i> Greenfield ISD</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-label">What We Do</div>
+      <h2 class="section-heading">Comprehensive cleaning solutions for every facility</h2>
+      <p class="section-sub">From daily upkeep to deep sanitization, we tailor our services to the unique needs of your space.</p>
+      <div class="services-grid stagger-children">
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <i data-lucide="building-2" style="width:28px;height:28px"></i>
+          </div>
+          <h3>Office Building Cleaning</h3>
+          <p>Complete daily, weekly, and monthly cleaning programs designed for corporate environments. We handle lobbies, workspaces, restrooms, kitchens, and common areas with meticulous attention.</p>
+          <img class="service-img" src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=600&q=80" alt="Clean modern office space">
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <i data-lucide="school" style="width:28px;height:28px"></i>
+          </div>
+          <h3>School & Campus Cleaning</h3>
+          <p>Safe, thorough cleaning for educational environments. We use non-toxic products to maintain healthy classrooms, gymnasiums, and cafeterias.</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <i data-lucide="spray-can" style="width:28px;height:28px"></i>
+          </div>
+          <h3>Deep Sanitization</h3>
+          <p>Hospital-grade disinfection services using EPA-approved products. Ideal for post-event, seasonal, or outbreak-response cleaning.</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <i data-lucide="wind" style="width:28px;height:28px"></i>
+          </div>
+          <h3>Floor & Carpet Care</h3>
+          <p>Professional floor stripping, waxing, and carpet extraction that extends the life of your flooring and keeps spaces looking new.</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <i data-lucide="sun" style="width:28px;height:28px"></i>
+          </div>
+          <h3>Window & Facade</h3>
+          <p>Interior and exterior window cleaning for buildings of any height. Crystal-clear results every time with insured crews.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="container about-grid">
+      <div class="about-images reveal">
+        <img class="about-img-main" src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80" alt="Professional cleaning team at work">
+        <img class="about-img-float" src="https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?w=600&q=80" alt="Cleaning equipment and supplies">
+      </div>
+      <div class="about-content">
+        <div class="section-label">Why PristinePro</div>
+        <h2 class="section-heading reveal">We set the standard for commercial clean</h2>
+        <p class="section-sub reveal">Our trained teams use commercial-grade equipment and eco-friendly products to deliver results that exceed expectations — consistently.</p>
+        <div class="about-features stagger-children">
+          <div class="about-feature reveal">
+            <div class="about-feature-icon">
+              <i data-lucide="shield-check" style="width:22px;height:22px"></i>
+            </div>
+            <div>
+              <h4>Fully Insured & Bonded</h4>
+              <p>Complete coverage for your peace of mind</p>
+            </div>
+          </div>
+          <div class="about-feature reveal">
+            <div class="about-feature-icon">
+              <i data-lucide="leaf" style="width:22px;height:22px"></i>
+            </div>
+            <div>
+              <h4>Green Certified</h4>
+              <p>Eco-friendly products and methods</p>
+            </div>
+          </div>
+          <div class="about-feature reveal">
+            <div class="about-feature-icon">
+              <i data-lucide="users" style="width:22px;height:22px"></i>
+            </div>
+            <div>
+              <h4>Trained Professionals</h4>
+              <p>Background-checked and certified staff</p>
+            </div>
+          </div>
+          <div class="about-feature reveal">
+            <div class="about-feature-icon">
+              <i data-lucide="clock" style="width:22px;height:22px"></i>
+            </div>
+            <div>
+              <h4>Flexible Scheduling</h4>
+              <p>Day, night, and weekend availability</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <div class="gallery-header">
+        <div class="section-label">Our Work</div>
+        <h2 class="section-heading">See the PristinePro difference</h2>
+        <p class="section-sub">Real results from real facilities we service every day.</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item reveal">
+          <img src="https://images.unsplash.com/photo-1562664348-2fb0e38adfd7?w=800&q=80" alt="Pristine corporate lobby">
+          <div class="gallery-overlay"><span>Corporate Headquarters</span></div>
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&q=80" alt="Clean school hallway">
+          <div class="gallery-overlay"><span>School Campus</span></div>
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://images.unsplash.com/photo-1497215842964-222b430dc094?w=600&q=80" alt="Sparkling office space">
+          <div class="gallery-overlay"><span>Tech Office</span></div>
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=800&q=80" alt="Clean conference room">
+          <div class="gallery-overlay"><span>Conference Center</span></div>
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&q=80" alt="Modern workspace">
+          <div class="gallery-overlay"><span>Co-working Space</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <div class="section-label">Testimonials</div>
+      <h2 class="section-heading">Trusted by facility managers everywhere</h2>
+      <p class="section-sub">Hear from the people who rely on us to keep their buildings immaculate.</p>
+      <div class="testimonials-grid stagger-children">
+        <div class="testimonial-card reveal">
+          <div class="testimonial-stars">
+            <i data-lucide="star" style="width:16px;height:16px;fill:currentColor"></i>
+            <i data-lucide="star" style="width:16px;height:16px;fill:currentColor"></i>
+            <i data-lucide="star" style="width:16px;height:16px;fill:currentColor"></i>
+            <i data-lucide="star" style="width:16px;height:16px;fill:currentColor"></i>
+            <i data-lucide="star" style="width:16px;height:16px;fill:currentColor"></i>
+          </div>
+          <blockquote>"PristinePro transformed our school campus. The attention to detail is unmatched, and our staff and students notice the difference every single day."</blockquote>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">RS</div>
+            <div>
+              <h4>Rachel Simmons</h4>
+              <p>Principal, Greenfield Elementary</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal">
+          <div class="testimonial-stars">
+            <i data-lucide="star" style="width:16px;height:16px;fill:currentColor"></i>
+            <i data-lucide="star" style="width:16px;height:16px;fill:currentColor"></i>
+            <i data-lucide="star" style="width:16px;height:16px;fill:currentColor"></i>
+            <i data-lucide="star" style="width:16px;height:16px;fill:currentColor"></i>
+            <i data-lucide="star" style="width:16px;height:16px;fill:currentColor"></i>
+          </div>
+          <blockquote>"We manage 12 office buildings and PristinePro handles every one flawlessly. Their consistency and professionalism are exactly what we need."</blockquote>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">MK</div>
+            <div>
+              <h4>Marcus Kim</h4>
+              <p>Operations Director, Apex Properties</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal">
+          <div class="testimonial-stars">
+            <i data-lucide="star" style="width:16px;height:16px;fill:currentColor"></i>
+            <i data-lucide="star" style="width:16px;height:16px;fill:currentColor"></i>
+            <i data-lucide="star" style="width:16px;height:16px;fill:currentColor"></i>
+            <i data-lucide="star" style="width:16px;height:16px;fill:currentColor"></i>
+            <i data-lucide="star" style="width:16px;height:16px;fill:currentColor"></i>
+          </div>
+          <blockquote>"After switching to PristinePro, our facility complaints dropped to zero. Their green cleaning approach aligns perfectly with our sustainability goals."</blockquote>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">JT</div>
+            <div>
+              <h4>Janet Torres</h4>
+              <p>Facility Manager, MedPlex Health</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta" id="contact">
+    <div class="container">
+      <div class="cta-box reveal">
+        <h2>Ready for a cleaner facility?</h2>
+        <p>Get a customized cleaning plan and free estimate for your building. No obligation, no hassle.</p>
+        <a href="mailto:hello@pristinepro.com" class="btn btn-white">
+          Get Your Free Quote
+          <i data-lucide="arrow-right" style="width:18px;height:18px"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="nav-logo">
+            <div class="nav-logo-icon">
+              <i data-lucide="sparkles" style="width:20px;height:20px"></i>
+            </div>
+            PristinePro
+          </a>
+          <p>Professional commercial cleaning services for schools, offices, and large-scale facilities across the country.</p>
+        </div>
+        <div>
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#">Office Cleaning</a></li>
+            <li><a href="#">School Cleaning</a></li>
+            <li><a href="#">Deep Sanitization</a></li>
+            <li><a href="#">Floor Care</a></li>
+            <li><a href="#">Window Cleaning</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+18005551234">(800) 555-1234</a></li>
+            <li><a href="mailto:hello@pristinepro.com">hello@pristinepro.com</a></li>
+            <li><a href="#">123 Clean Street<br>Suite 400</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 PristinePro. All rights reserved.</p>
+        <div class="footer-socials">
+          <a href="#" aria-label="Facebook"><i data-lucide="facebook" style="width:18px;height:18px"></i></a>
+          <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" style="width:18px;height:18px"></i></a>
+          <a href="#" aria-label="Instagram"><i data-lucide="instagram" style="width:18px;height:18px"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Navbar scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Mobile menu toggle
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navLinks = document.getElementById('navLinks');
+    mobileToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    // Close mobile menu on link click
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    // Hero entrance animations
+    function animateHero() {
+      const elements = [
+        { el: document.getElementById('heroBadge'), delay: 200 },
+        { el: document.getElementById('heroTitle'), delay: 400 },
+        { el: document.getElementById('heroSub'), delay: 600 },
+        { el: document.getElementById('heroActions'), delay: 800 },
+        { el: document.getElementById('heroStats'), delay: 1000 },
+      ];
+      elements.forEach(({ el, delay }) => {
+        setTimeout(() => {
+          el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        }, delay);
+      });
+    }
+    animateHero();
+
+    // Scroll-triggered reveal animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          // Also handle service-card and testimonial-card inline styles
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -60px 0px'
+    });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Counter animation for hero stats
+    function animateCounters() {
+      const stats = document.querySelectorAll('.hero-stat h3');
+      stats.forEach(stat => {
+        const text = stat.textContent;
+        const num = parseInt(text);
+        if (isNaN(num)) return;
+        const suffix = text.replace(/[\d]/g, '');
+        let current = 0;
+        const increment = Math.ceil(num / 40);
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= num) {
+            current = num;
+            clearInterval(timer);
+          }
+          stat.textContent = current + suffix;
+        }, 30);
+      });
+    }
+    setTimeout(animateCounters, 1200);
+  </script>
+</body>
+</html>
